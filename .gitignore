@@ -1,3 +1,4 @@
 .env
+.gitignore
 db.sqlite3
 etl_03.py
