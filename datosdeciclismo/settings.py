@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # STRAVA_CLIENT_SECRET = environ["STRAVA_CLIENT_SECRET"]
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = DJANGO_SECRET_KEY
+SECRET_KEY = 'DJANGO_SECRET_KEY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
