@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -75,7 +74,7 @@ WSGI_APPLICATION = 'datosdeciclismo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-#Database (Heroku) 
+#Heroku 
 
 import dj_database_url
 from decouple import config
@@ -88,7 +87,12 @@ DATABASES = {
 
 }
 
-# Database (Local)
+# Local
+
+# import environ
+
+# STRAVA_CLIENT_ID = environ["STRAVA_CLIENT_ID"]
+# STRAVA_CLIENT_SECRET = environ["STRAVA_CLIENT_SECRET"]
 
 # DATABASES = {
 #     'default': {
@@ -141,8 +145,3 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-#STRAVA
-
-STRAVA_CLIENT_ID = environ["STRAVA_CLIENT_ID"]
-STRAVA_CLIENT_SECRET = environ["STRAVA_CLIENT_SECRET"]
