@@ -514,6 +514,8 @@ def register(request):
         code = dict(request.GET)['code'][0]
     except:
         return redirect("/")    
+    print('STRAVA_CLIENT_ID')
+    print('STRAVA_CLIENT_SECRET')
     response = requests.post(
                     url = 'https://www.strava.com/oauth/token',
                     data = {
