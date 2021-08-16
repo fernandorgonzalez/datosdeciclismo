@@ -38,7 +38,6 @@ import pandas as pd
 import requests
 import urllib
 import urllib.request
-import settings
 import time
 
 # Create your views here.
