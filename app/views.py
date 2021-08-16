@@ -33,6 +33,8 @@ from django.urls import reverse_lazy
 from django_pandas.io import read_frame
 from pandas.io.json import json_normalize
 import datetime
+# Local
+# import environ
 import json
 import numpy as np
 import pandas as pd
@@ -511,16 +513,19 @@ def data_tiempo_total(request):
     return JsonResponse(data, safe=False)
 
 def register(request):
+
     try:
         code = dict(request.GET)['code'][0]
     except:
         return redirect("/")
 
+    # Heroku
     STRAVA_CLIENT_ID = config('STRAVA_CLIENT_ID')
     STRAVA_CLIENT_SECRET = config('STRAVA_CLIENT_SECRET')
 
-    print(STRAVA_CLIENT_ID)
-    print(STRAVA_CLIENT_SECRET)
+    # Local
+    # STRAVA_CLIENT_ID = environ['STRAVA_CLIENT_ID']
+    # STRAVA_CLIENT_SECRET = environ['STRAVA_CLIENT_SECRET']
     
     response = requests.post(
                     url = 'https://www.strava.com/oauth/token',
