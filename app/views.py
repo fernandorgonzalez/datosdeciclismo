@@ -516,8 +516,8 @@ def register(request):
     except:
         return redirect("/")
 
-    STRAVA_CLIENT_ID = config['STRAVA_CLIENT_ID']
-    STRAVA_CLIENT_SECRET = config['STRAVA_CLIENT_SECRET']
+    STRAVA_CLIENT_ID = config('STRAVA_CLIENT_ID')
+    STRAVA_CLIENT_SECRET = config('STRAVA_CLIENT_SECRET')
 
     print(STRAVA_CLIENT_ID)
     print(STRAVA_CLIENT_SECRET)
