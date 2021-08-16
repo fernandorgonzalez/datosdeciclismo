@@ -1,3 +1,4 @@
+from datosdeciclismo.datosdeciclismo.settings import STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET
 from .filters import actividades_filter
 from .models import *
 from django import forms
@@ -38,6 +39,7 @@ import pandas as pd
 import requests
 import urllib
 import urllib.request
+import settings
 import time
 
 # Create your views here.
@@ -517,8 +519,8 @@ def register(request):
     response = requests.post(
                     url = 'https://www.strava.com/oauth/token',
                     data = {
-                            'client_id': 66119,
-                            'client_secret': '86fdeb85b96090719b3d4c14bba12d0b7ce042bf',
+                            'client_id': STRAVA_CLIENT_ID,
+                            'client_secret': STRAVA_CLIENT_SECRET,
                             'code': code,
                             'grant_type': 'authorization_code'
                             }
