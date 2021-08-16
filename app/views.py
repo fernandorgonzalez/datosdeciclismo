@@ -1,4 +1,3 @@
-from datosdeciclismo.datosdeciclismo.settings import STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET
 from .filters import actividades_filter
 from .models import *
 from django import forms
