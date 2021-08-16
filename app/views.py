@@ -1,5 +1,6 @@
 from .filters import actividades_filter
 from .models import *
+from decouple import config
 from django import forms
 from django.conf import settings
 from django.contrib import messages
@@ -513,14 +514,19 @@ def register(request):
     try:
         code = dict(request.GET)['code'][0]
     except:
-        return redirect("/")    
-    print('STRAVA_CLIENT_ID')
-    print('STRAVA_CLIENT_SECRET')
+        return redirect("/")
+
+    STRAVA_CLIENT_ID = config['STRAVA_CLIENT_ID']
+    STRAVA_CLIENT_SECRET = config['STRAVA_CLIENT_SECRET']
+
+    print(STRAVA_CLIENT_ID)
+    print(STRAVA_CLIENT_SECRET)
+    
     response = requests.post(
                     url = 'https://www.strava.com/oauth/token',
                     data = {
-                            'client_id': 'STRAVA_CLIENT_ID',
-                            'client_secret': 'STRAVA_CLIENT_SECRET',
+                            'client_id': STRAVA_CLIENT_ID,
+                            'client_secret': STRAVA_CLIENT_SECRET,
                             'code': code,
                             'grant_type': 'authorization_code'
                             }
