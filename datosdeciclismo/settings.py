@@ -74,6 +74,21 @@ WSGI_APPLICATION = 'datosdeciclismo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+#Database (Heroku) 
+
+# import dj_database_url
+# from decouple import config
+
+# DATABASES = {
+
+#    'default': dj_database_url.config(
+#        default = config('DATABASE_URL')
+#    )
+
+# }
+
+#Database (Local)
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

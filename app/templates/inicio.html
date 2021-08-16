@@ -1,0 +1,698 @@
+{% extends 'main_inicio.html' %}
+
+{% block content %}
+
+{% load duracion %}
+
+<body>
+
+<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<div class="row"> 
+    <div class="col-md-12">
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <a class="text-decoration-none text-dark active">
+                            <div class="card my-card shadow text-center p-3">
+                                <!--<div class="card-header bg-dark text-white">
+                                    <strong>D A T O S D E  C I C L I S M O  . C O M</strong>
+                                </div>-->
+                                <form method="get">                     
+                                    <p></p>                    
+                                    {{my_filter.form}}                    
+                                    <button class="btn btn-primary" type="submit">Buscar</button>                    
+                                    <p></p>                    
+                                </form>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!--<div class="row">
+                    <div class="col-md-12 p-3">
+                        <a class="text-decoration-none text-dark">
+                            <div class="card my-card shadow text-center p-3">
+                                <img class="rounded mx-auto d-block" alt="Responsive image" src={{foto}}>
+                            </div>
+                        </a>
+                    </div>
+                </div>-->
+
+                <div class="row">
+                    <div class="col-md-12 p-3">
+                        <div class="card-header bg-dark text-center text-white">
+                            <strong>T O T A L E S</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 p-3">
+                        <a class="text-decoration-none text-dark">
+                            <div class="card my-card shadow text-center p-3">
+                                <h4>Actividad <i class="fas fa-check-square"></i></h4>
+                                <h3>{{dias}} Día/s</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 p-3">
+                        <a class="text-decoration-none text-dark">
+                            <div class="card my-card shadow text-center p-3">
+                                <h4>Altura <i class="fas fa-mountain"></i></h4>
+                                <h3>{{altura}} Km</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 p-3">
+                        <a class="text-decoration-none text-dark">
+                            <div class="card my-card shadow text-center p-3">
+                                <h4>Distancia <i class="fas fa-road"></i></h4>
+                                <h3>{{distancia}} Km</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 p-3">
+                        <a class="text-decoration-none text-dark">
+                            <div class="card my-card shadow text-center p-3">
+                                <h4>Tiempo <i class="far fa-clock"></i></h4>
+                                <h3>{{tiempo}}</h3>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 p-3">
+                        <div class="card-header bg-dark text-center text-white">
+                            <strong>P R O M E D I O S</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 p-3">
+                        <a class="text-decoration-none text-dark">
+                            <div class="card my-card shadow text-center p-3">
+                                <h4>Cadencia <i class="fab fa-superpowers"></i></h4>
+                                <h3>{{cadencia}} rpm</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 p-3">
+                        <a class="text-decoration-none text-dark">
+                            <div class="card my-card shadow text-center p-3">
+                                <h4>Potencia <i class="fas fa-bolt"></i></h4>
+                                <h3>{{potencia}} Watts</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 p-3">
+                        <a class="text-decoration-none text-dark">
+                            <div class="card my-card shadow text-center p-3">
+                                <h4>Pulsaciones <i class="fas fa-heartbeat"></i></h4>
+                                <h3>{{pulsaciones}} ppm</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 p-3">
+                        <a class="text-decoration-none text-dark">
+                            <div class="card my-card shadow text-center p-3">
+                                <h4>Velocidad <i class="fas fa-tachometer-alt"></i></h4>
+                                <h3>{{velocidad}} km/h</h3>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+    </div>            
+</div>
+   
+<div class="row">
+
+	<div class="col-md-12">
+
+		<table class="table table-sm">
+        
+            <div id="chart" class="chart--container"></div>               
+		
+        </table>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+	<div class="col-md-12">
+		<div class="card card-body">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card-header bg-dark text-center text-white">
+                        <strong>A C T I V I D A D E S</strong>
+                    </div>
+                </div>
+            </div>
+			
+			<table class="table table-sm">
+
+				{% for a in actividades %}
+
+				<tr>
+					<th>Año</th>
+					<th>Mes</th>
+					<th>Dia</th>
+                    <th>Atleta</th>
+					<th>Tipo</th>
+                    <th>Distancia</th>
+                    <th>Tiempo</th>
+					<th>Altura</th>
+					<th>Cadencia</th>
+                    <th>Potencia</th>
+                    <th>Pulsaciones</th>
+                    <th>Velocidad</th>
+				</tr>
+
+					<tr>
+						<td>{{a.año}}</td>
+						<td>{{a.mes}}</td>
+						<td>{{a.dia}}</td>
+                        <td>{{a.atleta}}</td>
+						<td>{{a.tipo}}</td>
+						<td>{{a.distancia|floatformat:'2'}}</td>
+                        <td>{% tiempo a.tiempo %}</td>
+						<td>{{a.altura}}</td>
+						<td>{{a.cadencia|floatformat:'2'}}</td>
+						<td>{{a.potencia|floatformat:'2'}}</td>
+						<td>{{a.pulsaciones|floatformat:'2'}}</td>
+                        <td>{{a.velocidad|floatformat:'2'}}</td>
+					</tr>
+
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+
+</div>
+
+<script>
+
+    var state_altura ={	
+		'items_altura':[],
+    	'values_altura_ruta':[],
+        'values_altura_virtual':[],
+	}
+
+	var data_url_altura = `/data_altura{{ url_inicio|safe }}`
+	
+    var value_total = 0
+
+	$.ajax({
+		method:'GET',
+		url:data_url_altura, 
+        
+		success:function(response){
+			console.log('response_altura:', response)
+			for (var r in response){
+
+				var key_altura = Object.keys(response[r])[0]
+				var value_altura = Object.values(response[r])[0]
+
+				state_altura.items_altura.push(key_altura)               
+				state_altura.values_altura_ruta.push(value_altura[0])[r]
+                state_altura.values_altura_virtual.push(value_altura[1])[r]
+			}
+
+            build_chart()
+        }
+	})
+
+	var state_distancia ={	
+		'items_distancia':[],
+    	'values_distancia_ruta':[],
+        'values_distancia_virtual':[],
+	}
+
+	var data_url_distancia = `/data_distancia{{ url_inicio|safe }}`
+	
+    var value_total = 0
+
+	$.ajax({
+		method:'GET',
+		url:data_url_distancia, 
+        
+		success:function(response){
+			console.log('response_distancia:', response)
+			for (var r in response){
+
+				var key_distancia = Object.keys(response[r])[0]
+				var value_distancia = Object.values(response[r])[0]
+                value_total = value_total + value_distancia[0] + value_distancia[1]
+
+				state_distancia.items_distancia.push(key_distancia)               
+				state_distancia.values_distancia_ruta.push(value_distancia[0])[r]
+                state_distancia.values_distancia_virtual.push(value_distancia[1])[r]
+			}
+
+            build_chart()
+        }
+	})
+
+    var state_distancia_total ={    
+        'items_distancia_total':[],
+        'values_distancia_total':[],
+    }
+
+    var series_distancia_total = []
+
+    var data_url_distancia_total = `/data_distancia_total{{ url_inicio|safe }}`
+    
+    $.ajax({
+        method:'GET',
+        url:data_url_distancia_total,
+        success:function(response){
+            console.log('response_distancia_total', response)
+            for (var r in response){
+
+                var key_distancia_total = Object.keys(response[r])[0]
+                var value_distancia_total = Object.values(response[r])[0]
+
+                state_distancia_total.items_distancia_total.push(key_distancia_total)
+                state_distancia_total.values_distancia_total.push(value_distancia_total[0])[r]
+            }
+            console.log('state_distancia_total:', state_distancia_total)
+
+            for (var s=0; s < state_distancia_total.values_distancia_total.length; s++){
+                series_distancia_total.push({"text":state_distancia_total.items_distancia_total[s],"values":[state_distancia_total.values_distancia_total[s]],"decimals":2,"thousands-separator":","},)
+            }
+            console.log('series_distancia_total', series_distancia_total)
+            build_chart()
+        }
+    })
+
+    var state_potencia ={	
+		'items_potencia':[],
+    	'values_potencia_ruta':[],
+        'values_potencia_virtual':[],
+	}
+
+	var data_url_potencia = `/data_potencia{{ url_inicio|safe }}`
+	
+    var value_total = 0
+
+	$.ajax({
+		method:'GET',
+		url:data_url_potencia, 
+        
+		success:function(response){
+			console.log('response_potencia:', response)
+			for (var r in response){
+
+				var key_potencia = Object.keys(response[r])[0]
+				var value_potencia = Object.values(response[r])[0]
+                value_total = value_total + value_potencia[0] + value_potencia[1]
+
+				state_potencia.items_potencia.push(key_potencia)               
+				state_potencia.values_potencia_ruta.push(value_potencia[0])[r]
+                state_potencia.values_potencia_virtual.push(value_potencia[1])[r]
+			}
+
+            build_chart()
+        }
+	})
+
+    var state_potencia_total ={    
+        'items_potencia_total':[],
+        'values_potencia_total':[],
+    }
+
+    var series_potencia_total = []
+
+    var data_url_potencia_total = `/data_potencia_total{{ url_inicio|safe }}`
+    
+    $.ajax({
+        method:'GET',
+        url:data_url_potencia_total,
+        success:function(response){
+            console.log('response_potencia_total', response)
+            for (var r in response){
+
+                var key_potencia_total = Object.keys(response[r])[0]
+                var value_potencia_total = Object.values(response[r])[0]
+
+                state_potencia_total.items_potencia_total.push(key_potencia_total)
+                state_potencia_total.values_potencia_total.push(value_potencia_total[0])[r]
+            }
+            console.log('state_potencia_total:', state_potencia_total)
+
+            for (var s=0; s < state_potencia_total.values_potencia_total.length; s++){
+                series_potencia_total.push({"text":state_potencia_total.items_potencia_total[s],"values":[state_potencia_total.values_potencia_total[s]],"decimals":2,"thousands-separator":","},)
+            }
+            console.log('series_potencia_total', series_potencia_total)
+            build_chart()
+        }
+    })    
+
+    var state_tiempo ={	
+		'items_tiempo':[],
+    	'values_tiempo_ruta':[],
+        'values_tiempo_virtual':[],
+	}
+
+	var data_url_tiempo = `/data_tiempo{{ url_inicio|safe }}`
+	
+    var value_total = 0
+
+	$.ajax({
+		method:'GET',
+		url:data_url_tiempo, 
+        
+		success:function(response){
+			console.log('response_tiempo:', response)
+			for (var r in response){
+
+				var key_tiempo = Object.keys(response[r])[0]
+				var value_tiempo = Object.values(response[r])[0]
+
+				state_tiempo.items_tiempo.push(key_tiempo)               
+				state_tiempo.values_tiempo_ruta.push(value_tiempo[0])[r]
+                state_tiempo.values_tiempo_virtual.push(value_tiempo[1])[r]
+			}
+
+            build_chart()
+        }
+	})
+
+    var state_tiempo_total ={    
+        'items_tiempo_total':[],
+        'values_tiempo_total':[],
+    }
+
+    var series_tiempo_total = []
+
+    var data_url_tiempo_total = `/data_tiempo_total{{ url_inicio|safe }}`
+    
+    $.ajax({
+        method:'GET',
+        url:data_url_tiempo_total,
+        success:function(response){
+            console.log('response_tiempo_total', response)
+            for (var r in response){
+
+                var key_tiempo_total = Object.keys(response[r])[0]
+                var value_tiempo_total = Object.values(response[r])[0]
+
+                state_tiempo_total.items_tiempo_total.push(key_tiempo_total)
+                state_tiempo_total.values_tiempo_total.push(value_tiempo_total[0])[r]
+            }
+            console.log('state_tiempo_total:', state_tiempo_total)
+
+            for (var s=0; s < state_tiempo_total.values_tiempo_total.length; s++){
+                series_tiempo_total.push({"text":state_tiempo_total.items_tiempo_total[s],"values":[state_tiempo_total.values_tiempo_total[s]],"decimals":2,"thousands-separator":","},)
+            }
+            console.log('series_tiempo_total', series_tiempo_total)
+            build_chart()
+        }
+    })
+
+    function build_chart(){
+
+        let chart_data = {
+
+            graphset: [
+
+                {
+                    "type":"bar",
+                    "title":{
+                 	    "text": "Distancia"
+ 	                },
+                    width: '32%',
+                    height: '50%',
+                    x: '2%',
+                    y: '2%',
+                    "legend": {
+                    },
+                    "plot": {
+                        "value-box": {
+
+                        }
+                    },
+                    "scale-x":{
+                        label: { text: 'Mes' },
+                        "values":state_altura.items_altura
+                    },
+                    "scale-y":{
+                        label: { text: 'Distancia' },
+                    },
+                    plot: {
+                        animation: {
+                        effect: 'ANIMATION_EXPAND_BOTTOM',
+                        method: 'ANIMATION_STRONG_EASE_OUT',
+                        sequence: 'ANIMATION_BY_NODE',
+                        speed: 275,
+                        }
+                    },
+                    "series":[
+                        {
+                            "text":'Ruta',
+                            "values":state_distancia.values_distancia_ruta,
+                            "decimals":2,
+                            "thousands-separator": ",",
+                            backgroundColor: '#6FA6DF',
+                        },
+                        {
+                            "text":'Virtual',
+                            "values":state_distancia.values_distancia_virtual,
+                            "decimals":2,
+                            "thousands-separator": ",",
+                            backgroundColor: '#A0BE4A',
+                        },
+                        ]
+                },                               
+
+                {
+                    "type":"bar",
+                    "title":{
+                 	    "text": "Potencia"
+ 	                },
+                    width: '32%',
+                    height: '50%',
+                    x: '34%',
+                    y: '2%',
+                    "legend": {
+                    },
+                    "plot": {
+                        "value-box": {
+
+                        }
+                    },
+                    "scale-x":{
+                        label: { text: 'Mes' },
+                        "values":state_distancia.items_distancia
+                    },
+                    "scale-y":{
+                        label: { text: 'Potencia' },
+                    },
+                    plot: {
+                        animation: {
+                        effect: 'ANIMATION_EXPAND_BOTTOM',
+                        method: 'ANIMATION_STRONG_EASE_OUT',
+                        sequence: 'ANIMATION_BY_NODE',
+                        speed: 275,
+                        }
+                    },
+                    "series":[
+                        {
+                            "text":'Ruta',
+                            "values":state_potencia.values_potencia_ruta,
+                            "decimals":2,
+                            "thousands-separator": ",",
+                            backgroundColor: '#6FA6DF',
+                        },
+                        {
+                            "text":'Virtual',
+                            "values":state_potencia.values_potencia_virtual,
+                            "decimals":2,
+                            "thousands-separator": ",",
+                            backgroundColor: '#A0BE4A',
+                        },
+                        ]
+                },                
+
+                {
+                    "type":"bar",
+                    "title":{
+                 	    "text": "Tiempo"
+ 	                },
+                    width: '32%',
+                    height: '50%',
+                    x: '66%',
+                    y: '2%',
+                    "legend": {
+                    },
+                    "plot": {
+                        "value-box": {
+
+                        }
+                    },
+                    "scale-x":{
+                        label: { text: 'Mes' },
+                        "values":state_tiempo.items_tiempo
+                    },
+                    "scale-y":{
+                        label: { text: 'Tiempo' },
+                    },
+                    plot: {
+                        animation: {
+                        effect: 'ANIMATION_EXPAND_BOTTOM',
+                        method: 'ANIMATION_STRONG_EASE_OUT',
+                        sequence: 'ANIMATION_BY_NODE',
+                        speed: 275,
+                        }
+                    },
+                    "series":[
+                        {
+                            "text":'Ruta',
+                            "values":state_tiempo.values_tiempo_ruta,
+                            "decimals":2,
+                            "thousands-separator": ",",
+                            backgroundColor: '#6FA6DF',
+                        },
+                        {
+                            "text":'Virtual',
+                            "values":state_tiempo.values_tiempo_virtual,
+                            "decimals":2,
+                            "thousands-separator": ",",
+                            backgroundColor: '#A0BE4A',
+                        },
+                        ]
+                }, 
+
+                {   
+                    "type":"hbar",
+                    width: '32%',
+                    height: '50%',
+                    x: '2%',
+                    y: '50%',
+                    "legend": {
+                        marginTop: '0%',
+                        marginLeft: '60%',
+                    },
+                    "plot": {
+                        "value-box": {
+                        }
+                    },
+                    "scale-x": {
+                        label: { text: 'Atleta' },
+                        visible: false,
+                    },
+                    "scale-y": {
+                        "decimals":2,
+                        "thousands-separator": ",",
+                        label: { text: 'Distancia' },
+                    },
+                    plot: {
+                        animation: {
+                        effect: 'ANIMATION_EXPAND_BOTTOM',
+                        method: 'ANIMATION_STRONG_EASE_OUT',
+                        sequence: 'ANIMATION_BY_NODE',
+                        speed: 275,
+                        }
+                    },
+                    "series":series_distancia_total
+                },
+
+                {   
+                    "type":"hbar",
+                    width: '32%',
+                    height: '50%',
+                    x: '34%',
+                    y: '50%',
+                    "legend": {
+                        marginTop: '0%',
+                        marginLeft: '60%',
+                    },
+                    "plot": {
+                        "value-box": {
+                        }
+                    },
+                    "scale-x": {
+                        label: { text: 'Atleta' },
+                        visible: false,
+                    },
+                    "scale-y": {
+                        "decimals":2,
+                        "thousands-separator": ",",
+                        label: { text: 'Potencia' },
+                    },
+                    plot: {
+                        animation: {
+                        effect: 'ANIMATION_EXPAND_BOTTOM',
+                        method: 'ANIMATION_STRONG_EASE_OUT',
+                        sequence: 'ANIMATION_BY_NODE',
+                        speed: 275,
+                        }
+                    },
+                    "series":series_potencia_total
+                },
+                
+                {   
+                    "type":"hbar",
+                    width: '32%',
+                    height: '50%',
+                    x: '66%',
+                    y: '50%',
+                    "legend": {
+                        marginTop: '0%',
+                        marginLeft: '60%',
+                    },
+                    "plot": {
+                        "value-box": {
+                        }
+                    },
+                    "scale-x": {
+                        label: { text: 'Atleta' },
+                        visible: false,
+                    },
+                    "scale-y": {
+                        "decimals":2,
+                        "thousands-separator": ",",
+                        label: { text: 'Tiempo' },
+                    },
+                    plot: {
+                        animation: {
+                        effect: 'ANIMATION_EXPAND_BOTTOM',
+                        method: 'ANIMATION_STRONG_EASE_OUT',
+                        sequence: 'ANIMATION_BY_NODE',
+                        speed: 275,
+                        }
+                    },
+                    "series":series_tiempo_total
+                },                
+
+            ]
+                
+        }
+
+        if (value_total>0)
+        {
+            zingchart.render({
+            id: "chart",
+            data: chart_data,
+            height: '50%',
+            width: '100%'
+            });
+        }
+
+    }
+
+</script>
+
+</body>
+
+{% endblock %}

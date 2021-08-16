@@ -1,0 +1,46 @@
+{% extends 'main_atletas.html' %}
+
+{% block content %}
+
+<body>
+    
+    <div class="row">
+    
+        <div class="col-md-12">
+            <div class="card card-body">
+    
+                <table class="table table-sm">
+                
+                    {% for a in atletas %}
+
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Ciudad</th>
+                            <th>Provincia</th>
+                            <th>País</th>
+                            <th>Peso</th>
+                            <th>Sexo</th>
+                        </tr>                       
+
+                        <tr>
+                            <td>{{a.firstname}}</td>
+                            <td>{{a.lastname}}</td>
+                            <td>{{a.city}}</td>
+                            <td>{{a.state}}</td>
+                            <td>{{a.country}}</td>
+                            <td>{{a.weight|floatformat:'2'}}</td>
+                            <td>{{a.sex}}</td>
+                        </tr>
+    
+                    {% endfor %}
+    
+                </table>
+            </div>
+        </div>
+    
+    </div>
+        
+    </body>
+
+{% endblock %}

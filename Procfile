@@ -1,0 +1,1 @@
+web: gunicorn ciclismo.wsgi --log-file -
