@@ -19,8 +19,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
+
+#environ should be disabled for Heroku
+# import environ
+# DJANGO_SECRET_KEY = environ["DJANGO_SECRET_KEY"]
+# STRAVA_CLIENT_ID = environ["STRAVA_CLIENT_ID"]
+# STRAVA_CLIENT_SECRET = environ["STRAVA_CLIENT_SECRET"]
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-fu&ex8@%vfby6p@a5#v1ly@u-0zh@-yqux6)l(2u#cg+_=u!-_'
+SECRET_KEY = DJANGO_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -88,11 +95,6 @@ DATABASES = {
 }
 
 # Local
-
-# import environ
-
-# STRAVA_CLIENT_ID = environ["STRAVA_CLIENT_ID"]
-# STRAVA_CLIENT_SECRET = environ["STRAVA_CLIENT_SECRET"]
 
 # DATABASES = {
 #     'default': {
