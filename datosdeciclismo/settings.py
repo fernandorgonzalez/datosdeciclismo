@@ -76,25 +76,25 @@ WSGI_APPLICATION = 'datosdeciclismo.wsgi.application'
 
 #Database (Heroku) 
 
-# import dj_database_url
-# from decouple import config
-
-# DATABASES = {
-
-#    'default': dj_database_url.config(
-#        default = config('DATABASE_URL')
-#    )
-
-# }
-
-#Database (Local)
+import dj_database_url
+from decouple import config
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+
+   'default': dj_database_url.config(
+       default = config('DATABASE_URL')
+   )
+
 }
+
+# Database (Local)
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
