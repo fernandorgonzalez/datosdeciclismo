@@ -517,8 +517,8 @@ def register(request):
     response = requests.post(
                     url = 'https://www.strava.com/oauth/token',
                     data = {
-                            'client_id': 66119,
-                            'client_secret': '86fdeb85b96090719b3d4c14bba12d0b7ce042bf',
+                            'client_id': 'STRAVA_CLIENT_ID',
+                            'client_secret': 'STRAVA_CLIENT_SECRET',
                             'code': code,
                             'grant_type': 'authorization_code'
                             }
