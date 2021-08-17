@@ -512,7 +512,7 @@ def data_tiempo_total(request):
 
     return JsonResponse(data, safe=False)
 
-def register(request):
+def registro(request):
 
     try:
         code = dict(request.GET)['code'][0]

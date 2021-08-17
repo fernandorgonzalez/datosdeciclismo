@@ -13,5 +13,5 @@ urlpatterns = [
     path('data_potencia_total/', views.data_potencia_total, name="data_potencia_total"),
     path('data_tiempo/', views.data_tiempo, name="data_tiempo"),
     path('data_tiempo_total/', views.data_tiempo_total, name="data_tiempo_total"),
-    path('register/', views.register, name="register"),
+    path('registro/', views.registro, name="registro"),
 ]
