@@ -1,2 +1,7 @@
 .env
+activities.csv
+actividades.csv
+atletas.csv
+etl_01.py
+etl_02.py
 etl_03.py
