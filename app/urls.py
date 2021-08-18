@@ -5,7 +5,6 @@ from django.urls import path
 urlpatterns = [
     path('', views.inicio, name="inicio"),
     path('atletas/', views.atleta, name="atletas"),
-    path('ayuda/', views.ayuda, name="ayuda"),
     path('data_altura/', views.data_altura, name="data_altura"),
     path('data_distancia/', views.data_distancia, name="data_distancia"),
     path('data_distancia_total/', views.data_distancia_total, name="data_distancia_total"),
