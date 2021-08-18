@@ -11,7 +11,7 @@ DB_NAME = environ["DB_NAME"]
 DB_USER = environ["DB_USER"]
 DB_PASSWORD = environ["DB_PASSWORD"]
 
-WD = environ["HOME"]
+WD = environ["WD"]
 
 STRAVA_CLIENT_ID = environ["STRAVA_CLIENT_ID"]
 STRAVA_CLIENT_SECRET = environ["STRAVA_CLIENT_SECRET"]
