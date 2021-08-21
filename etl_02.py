@@ -1,10 +1,10 @@
-import settings
 from os import environ
+import settings
 
-WD = environ["WD"]
+WDIR = environ["WDIR"]
 
-input_file_name = WD + 'strava.csv'
-output_file_name = WD + 'actividades.csv'
+input_file_name = WDIR + 'strava.csv'
+output_file_name = WDIR + 'actividades.csv'
 
 tipos = {'Ride','VirtualRide'}
 
@@ -29,16 +29,19 @@ for line in file_in:
     altura = line[5]
     if altura == '':
         altura = '0'
-    cadencia = line[37]
+    #cadencia = line[37]    
+    cadencia = line[51]
     if cadencia == '':
         cadencia = '0'
     distancia = str(round(float(line[2])/1000,2))
     if distancia == '':
         distancia = '0'
-    potencia = line[38]
+    #potencia = line[38]
+    potencia = line[53]
     if potencia == '':
         potencia = '0'
-    pulsaciones = line[43]
+    #pulsaciones = line[43]
+    pulsaciones = line[38]
     if pulsaciones == '' or pulsaciones == 'False':
         pulsaciones = '0'
     tiempo = line[4]

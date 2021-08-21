@@ -7,7 +7,7 @@ DB_NAME = environ["DB_NAME"]
 DB_USER = environ["DB_USER"]
 DB_PASSWORD = environ["DB_PASSWORD"]
 
-WD = environ["WD"]
+WDIR = environ["WDIR"]
 
 conexion = psycopg2.connect(host=DB_HOST,dbname=DB_NAME,user=DB_USER,  password=DB_PASSWORD)
 
@@ -17,7 +17,7 @@ query = 'DELETE FROM APP_ACTIVIDADES'
 
 cursor.execute(query)
 
-archivo = open(WD + 'actividades.csv', encoding='utf-8')
+archivo = open(WDIR + 'actividades.csv', encoding='utf-8')
 
 for linea in archivo:
     
@@ -46,6 +46,7 @@ for linea in archivo:
     cursor.execute(query, (id_,fecha,año,mes,dia,tipo,altura,cadencia,distancia,potencia,pulsaciones,tiempo,velocidad,atleta_id))
 
 conexion.commit()
+
 cursor.close()
 conexion.close()
 

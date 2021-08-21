@@ -11,7 +11,7 @@ DB_NAME = environ["DB_NAME"]
 DB_USER = environ["DB_USER"]
 DB_PASSWORD = environ["DB_PASSWORD"]
 
-WD = environ["WD"]
+WDIR = environ["WDIR"]
 
 STRAVA_CLIENT_ID = environ["STRAVA_CLIENT_ID"]
 STRAVA_CLIENT_SECRET = environ["STRAVA_CLIENT_SECRET"]
@@ -21,7 +21,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 auth_url = "https://www.strava.com/oauth/token"
 activites_url = "https://www.strava.com/api/v3/athlete/activities"
 
-output_file_name = WD + "strava.csv"
+output_file_name = WDIR + "strava.csv"
 
 after = int((datetime.today() - timedelta(days=365)).timestamp())
 
