@@ -17,27 +17,29 @@ query = 'DELETE FROM APP_ACTIVIDADES'
 
 cursor.execute(query)
 
-archivo = open(WDIR + 'actividades.csv', encoding='utf-8')
+file = open(WDIR + 'actividades.csv', encoding='utf-8')
 
-for linea in archivo:
+next(file)
+
+for line in file:
     
-    linea  = linea.strip('\n')
-    lista = linea.split(',')
+    line  = line.strip('\n')
+    line = line.split(',')
     
-    id_ = lista[0]
-    fecha = lista[1]
-    año = lista[2]
-    mes = lista[3]
-    dia = lista[4]
-    tipo = lista[5]
-    altura = lista[6]
-    cadencia = lista[7]
-    distancia = lista[8]
-    potencia = lista[9]
-    pulsaciones = lista[10]
-    tiempo = lista[11]
-    velocidad = lista[12]
-    atleta_id = lista[13]
+    id_ = line[0]
+    fecha = line[1]
+    año = line[2]
+    mes = line[3]
+    dia = line[4]
+    tipo = line[5]
+    altura = line[6]
+    cadencia = line[7]
+    distancia = line[8]
+    potencia = line[9]
+    pulsaciones = line[10]
+    tiempo = line[11]
+    velocidad = line[12]
+    atleta_id = line[13]
     
     print(id_)
     

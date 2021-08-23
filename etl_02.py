@@ -15,33 +15,32 @@ next(file_in)
 
 i = 1
 
+file_out.write('id,fecha,año,mes,dia,tipo,altura,cadencia,distancia,potencia,pulsaciones,tiempo,velocidad,atleta_id' + '\n')
+
 for line in file_in:
     
     line  = line.strip('\n')
     line = line.split(';')
     
     id = str(i)
-    año = line[10][:4]
-    mes = line[10][5:7]
-    dia = line[10][8:10]
+    año = line[11][:4]
+    mes = line[11][5:7]
+    dia = line[11][8:10]
     fecha = año + mes + dia
     tipo = line[6]
     altura = line[5]
     if altura == '':
-        altura = '0'
-    #cadencia = line[37]    
-    cadencia = line[51]
+        altura = '0'   
+    cadencia = line[38]
     if cadencia == '':
         cadencia = '0'
     distancia = str(round(float(line[2])/1000,2))
     if distancia == '':
         distancia = '0'
-    #potencia = line[38]
-    potencia = line[53]
+    potencia = line[40]
     if potencia == '':
         potencia = '0'
-    #pulsaciones = line[43]
-    pulsaciones = line[38]
+    pulsaciones = line[44]
     if pulsaciones == '' or pulsaciones == 'False':
         pulsaciones = '0'
     tiempo = line[4]
