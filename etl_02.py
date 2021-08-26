@@ -23,26 +23,34 @@ for line in file_in:
     line = line.split(';')
     
     id = str(i)
+    #start_date_local
     año = line[11][:4]
     mes = line[11][5:7]
     dia = line[11][8:10]
     fecha = año + mes + dia
+    #type
     tipo = line[6]
+    #total_elevation_gain
     altura = line[5]
     if altura == '':
-        altura = '0'   
-    cadencia = line[38]
+        altura = '0'
+    #average_cadence
+    cadencia = line[37]
     if cadencia == '':
         cadencia = '0'
+    #distance
     distancia = str(round(float(line[2])/1000,2))
     if distancia == '':
         distancia = '0'
-    potencia = line[40]
+    #average_watts
+    potencia = line[38]
     if potencia == '':
         potencia = '0'
-    pulsaciones = line[44]
+    #average_heartrate
+    pulsaciones = line[43]
     if pulsaciones == '' or pulsaciones == 'False':
         pulsaciones = '0'
+    #elapsed_time
     tiempo = line[4]
     if tiempo == '':
         tiempo = '0'
@@ -50,6 +58,7 @@ for line in file_in:
         velocidad = str(round(float(distancia)/(float(tiempo)/3600),2))
     except:
         velocidad = 0
+    #atleta_id
     atleta_id = line[60]
     
     if tipo in tipos:
