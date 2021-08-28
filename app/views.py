@@ -47,7 +47,30 @@ import time
 
 def api_actividades(request):
 
-    data_api_actividades = actividades.objects.values('id','fecha','año','mes','dia','tipo','altura','cadencia','distancia','potencia','pulsaciones','tiempo','velocidad','atleta')
+    atleta = dict(request.GET)['atleta'][0]
+    año = dict(request.GET)['año'][0]
+    mes = dict(request.GET)['mes'][0]
+    dia = dict(request.GET)['dia'][0]
+    tipo = dict(request.GET)['tipo'][0]
+
+    query = {}
+
+    if (atleta !=''):
+        query['atleta'] = atleta    
+
+    if (año !=''):
+        query['año'] = año
+
+    if (mes !=''):
+        query['mes'] = mes
+
+    if (dia !=''):
+        query['dia'] = dia    
+
+    if (tipo !=''):
+        query['tipo'] = tipo
+
+    data_api_actividades = actividades.objects.filter(**query).values('id','fecha','año','mes','dia','tipo','altura','cadencia','distancia','potencia','pulsaciones','tiempo','velocidad','atleta')
 
     df_data = read_frame(data_api_actividades)
 
