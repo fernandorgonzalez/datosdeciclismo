@@ -51,7 +51,7 @@ def api_actividades(request):
         atleta = dict(request.GET)['atleta'][0]
 
     except:
-        return HttpResponseRedirect('/?atleta=&año=&mes=&dia=&tipo=')
+        return HttpResponseRedirect('/api/actividades/?atleta=&año=&mes=&dia=&tipo=')
 
     año = dict(request.GET)['año'][0]
     mes = dict(request.GET)['mes'][0]
