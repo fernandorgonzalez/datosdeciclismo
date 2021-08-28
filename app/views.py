@@ -47,7 +47,12 @@ import time
 
 def api_actividades(request):
 
-    atleta = dict(request.GET)['atleta'][0]
+    try:
+        atleta = dict(request.GET)['atleta'][0]
+
+    except:
+        return HttpResponseRedirect('/?atleta=&año=&mes=&dia=&tipo=')
+
     año = dict(request.GET)['año'][0]
     mes = dict(request.GET)['mes'][0]
     dia = dict(request.GET)['dia'][0]
@@ -70,7 +75,7 @@ def api_actividades(request):
     if (tipo !=''):
         query['tipo'] = tipo
 
-    data_api_actividades = actividades.objects.filter(**query).values('id','fecha','año','mes','dia','tipo','altura','cadencia','distancia','potencia','pulsaciones','tiempo','velocidad','atleta')
+    data_api_actividades = actividades.objects.filter(**query).values('id','fecha','año','mes','dia','tipo','altura','cadencia','distancia','potencia','pulsaciones','tiempo','velocidad','atletas__id')
 
     df_data = read_frame(data_api_actividades)
 
@@ -90,7 +95,7 @@ def api_actividades(request):
         pulsaciones = row['pulsaciones']
         tiempo = row['tiempo']
         velocidad = row['velocidad']
-        atleta = row['atleta']
+        atleta = row['atletas_id']
         data.append({id:(fecha,año,mes,dia,tipo,altura,cadencia,distancia,potencia,pulsaciones,tiempo,velocidad,atleta,)})
 
     return JsonResponse(data, safe=False)
