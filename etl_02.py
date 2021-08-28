@@ -11,7 +11,36 @@ tipos = {'Ride','VirtualRide'}
 file_in = open(input_file_name)
 file_out = open(output_file_name, 'w')
 
-next(file_in)
+
+row = next(file_in)
+row  = row.strip('\n')
+row = row.split(';')
+
+for r in range(0,61):
+    
+    if row[r] == 'start_date_local':
+        start_date_local = r
+        
+    if row[r] == 'type':
+        type = r
+
+    if row[r] == 'total_elevation_gain':
+        total_elevation_gain= r
+    
+    if row[r] == 'average_cadence':
+        average_cadence = r
+
+    if row[r] == 'distance':
+        distance = r
+    
+    if row[r] == 'average_watts':
+        average_watts = r
+        
+    if row[r] == 'average_heartrate':
+        average_heartrate = r    
+
+    if row[r] == 'elapsed_time':
+        elapsed_time = r          
 
 i = 1
 
@@ -24,34 +53,34 @@ for line in file_in:
     
     id = str(i)
     #start_date_local
-    año = line[11][:4]
-    mes = line[11][5:7]
-    dia = line[11][8:10]
+    año = line[start_date_local][:4]
+    mes = line[start_date_local][5:7]
+    dia = line[start_date_local][8:10]
     fecha = año + mes + dia
     #type
-    tipo = line[6]
+    tipo = line[type]
     #total_elevation_gain
-    altura = line[5]
+    altura = line[total_elevation_gain]
     if altura == '':
         altura = '0'
     #average_cadence
-    cadencia = line[37]
+    cadencia = line[average_cadence]
     if cadencia == '':
         cadencia = '0'
     #distance
-    distancia = str(round(float(line[2])/1000,2))
+    distancia = str(round(float(line[distance])/1000,2))
     if distancia == '':
         distancia = '0'
     #average_watts
-    potencia = line[38]
+    potencia = line[average_watts]
     if potencia == '':
         potencia = '0'
     #average_heartrate
-    pulsaciones = line[43]
+    pulsaciones = line[average_heartrate]
     if pulsaciones == '' or pulsaciones == 'False':
         pulsaciones = '0'
     #elapsed_time
-    tiempo = line[4]
+    tiempo = line[elapsed_time]
     if tiempo == '':
         tiempo = '0'
     try:
