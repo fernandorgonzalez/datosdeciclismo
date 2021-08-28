@@ -31,7 +31,7 @@ SECRET_KEY = config('DJANGO_SECRET_KEY')
 # DJANGO_SECRET_KEY = environ["DJANGO_SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 

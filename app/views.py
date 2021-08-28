@@ -588,14 +588,6 @@ def data_tiempo_total(request):
 
     return JsonResponse(data, safe=False)
 
-def error_404(request, exception):
-   context = {}
-   return render(request,'admin/404.html', context)
-
-def error_500(request):
-   context = {}
-   return render(request,'admin/500.html', context)
-
 def registro(request):
 
     try:
