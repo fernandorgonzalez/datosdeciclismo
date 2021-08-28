@@ -47,24 +47,22 @@ import time
 
 def api_atletas(request):
 
-    atleta = dict(request.GET)['atleta'][0]
-
-    query = {}
-
-    if (atleta !=''):
-        query['atleta'] = atleta    
-
-    data_api_atletas = atletas.objects.filter(**query).values('athlete_id','firstname','lastname')
+    data_api_atletas = atletas.objects.values('id','firstname','lastname','city','state','country','weight','sex')
 
     df_data = read_frame(data_api_atletas)
 
     data = []
 
     for index, row in df_data.iterrows():
-        id = int(row['athlete_id'])
+        id = int(row['id'])
         nombre = row['firstname']
         apellido = row['lastname']
-        data.append({id:(nombre,apellido,)})
+        ciudad = row['city']
+        provincia = row['state']
+        pais = row['country']
+        peso = row['weight']
+        sexo = row['sex']
+        data.append({id:(nombre,apellido,ciudad,provincia,pais,peso,sexo,)})
 
     return JsonResponse(data, safe=False)
 
