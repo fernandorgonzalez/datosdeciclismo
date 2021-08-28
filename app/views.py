@@ -45,6 +45,29 @@ import time
 
 # Create your views here.
 
+def api_atletas(request):
+
+    atleta = dict(request.GET)['atleta'][0]
+
+    query = {}
+
+    if (atleta !=''):
+        query['atleta'] = atleta    
+
+    data_api_atletas = atletas.objects.filter(**query).values('athlete_id','firstname','lastname')
+
+    df_data = read_frame(data_api_atletas)
+
+    data = []
+
+    for index, row in df_data.iterrows():
+        id = int(row['athlete_id'])
+        nombre = row['firstname']
+        apellido = row['apellido']
+        data.append({id:(nombre,apellido,)})
+
+    return JsonResponse(data, safe=False)
+
 def atleta(request):
     atleta = atletas.objects.all().order_by('firstname','lastname','athlete_id')
     context = {'atletas':atleta}
