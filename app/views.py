@@ -63,7 +63,7 @@ def api_atletas(request):
     for index, row in df_data.iterrows():
         id = int(row['athlete_id'])
         nombre = row['firstname']
-        apellido = row['apellido']
+        apellido = row['lastname']
         data.append({id:(nombre,apellido,)})
 
     return JsonResponse(data, safe=False)
