@@ -21,6 +21,8 @@ from django.http import HttpResponse
 from django.urls import include
 from django.urls import path
 
+handler404 = 'app.views.view_404' 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('app.urls')),
