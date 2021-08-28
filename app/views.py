@@ -75,7 +75,7 @@ def api_actividades(request):
     if (tipo !=''):
         query['tipo'] = tipo
 
-    data_api_actividades = actividades.objects.filter(**query).values('id','fecha','año','mes','dia','tipo','altura','cadencia','distancia','potencia','pulsaciones','tiempo','velocidad','atletas__id')
+    data_api_actividades = actividades.objects.filter(**query).values('id','fecha','año','mes','dia','tipo','altura','cadencia','distancia','potencia','pulsaciones','tiempo','velocidad','atleta_id')
 
     df_data = read_frame(data_api_actividades)
 
@@ -95,7 +95,7 @@ def api_actividades(request):
         pulsaciones = row['pulsaciones']
         tiempo = row['tiempo']
         velocidad = row['velocidad']
-        atleta = row['atletas_id']
+        atleta = row['atleta_id']
         data.append({id:(fecha,año,mes,dia,tipo,altura,cadencia,distancia,potencia,pulsaciones,tiempo,velocidad,atleta,)})
 
     return JsonResponse(data, safe=False)
