@@ -45,6 +45,33 @@ import time
 
 # Create your views here.
 
+def api_actividades(request):
+
+    data_api_actividades = actividades.objects.values('id','fecha','año','mes','dia','tipo','altura','cadencia','distancia','potencia','pulsaciones','tiempo','velocidad','atleta')
+
+    df_data = read_frame(data_api_actividades)
+
+    data = []
+
+    for index, row in df_data.iterrows():
+        id = int(row['id'])
+        fecha = row['fecha']
+        año = row['año']
+        mes = row['mes']
+        dia = row['dia']
+        tipo = row['tipo']
+        altura = row['altura']
+        cadencia = row['cadencia']
+        distancia = row['distancia']
+        potencia = row['potencia']
+        pulsaciones = row['pulsaciones']
+        tiempo = row['tiempo']
+        velocidad = row['velocidad']
+        atleta = row['atleta']
+        data.append({id:(fecha,año,mes,dia,tipo,altura,cadencia,distancia,potencia,pulsaciones,tiempo,velocidad,atleta,)})
+
+    return JsonResponse(data, safe=False)
+
 def api_atletas(request):
 
     data_api_atletas = atletas.objects.values('id','firstname','lastname','city','state','country','weight','sex')
