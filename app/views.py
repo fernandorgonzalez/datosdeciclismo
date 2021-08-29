@@ -75,7 +75,7 @@ def api_actividades(request):
     if (tipo !=''):
         query['tipo'] = tipo
 
-    data_api_actividades = actividades.objects.filter(**query).values('id','fecha','año','mes','dia','tipo','altura','cadencia','distancia','potencia','pulsaciones','tiempo','velocidad','atleta_id').order_by("-id")
+    data_api_actividades = actividades.objects.filter(**query).values('id','fecha','año','mes','dia','tipo','altura','cadencia','distancia','potencia','pulsaciones','tiempo','velocidad','atleta_id')
 
     df_data = read_frame(data_api_actividades)
 
@@ -163,8 +163,10 @@ def inicio(request):
     if (tipo !=''):
         query['tipo'] = tipo
 
-    inicio_actividades = actividades.objects.all().order_by("-año","-mes","-dia","atleta","tipo","altura","cadencia")
+    #inicio_actividades = actividades.objects.all().order_by("-año","-mes","-dia","atleta","tipo","altura","cadencia")
 
+    inicio_actividades = actividades.objects.all()
+    
     inicio_altura = actividades.objects.filter(**query).values('altura')
     df_inicio_altura = read_frame(inicio_altura)
     if inicio_altura.count() != 0:

@@ -72,6 +72,8 @@ for atleta in cursor:
         df=pd.concat([df,_df], ignore_index=True)
         page = page +1
 
+df = df.sort_values(by="id", ascending=False)
+
 cursor.close()
 conexion.close()
 
