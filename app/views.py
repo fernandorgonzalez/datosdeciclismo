@@ -75,7 +75,7 @@ def api_actividades(request):
     if (tipo !=''):
         query['tipo'] = tipo
 
-    data_api_actividades = actividades.objects.filter(**query).values('id','fecha','año','mes','dia','tipo','altura','cadencia','distancia','potencia','pulsaciones','tiempo','velocidad','atleta_id')
+    data_api_actividades = actividades.objects.filter(**query).values('id','fecha','año','mes','dia','tipo','altura','cadencia','distancia','potencia','pulsaciones','tiempo','velocidad','atleta_id').order_by("-id")
 
     df_data = read_frame(data_api_actividades)
 
