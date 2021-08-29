@@ -94,6 +94,7 @@ def api_actividades(request):
         potencia = row['potencia']
         pulsaciones = row['pulsaciones']
         tiempo = row['tiempo']
+        tiempo = str(int(tiempo/3600)) + ":" + time.strftime('%M:%S', time.gmtime(tiempo))
         velocidad = row['velocidad']
         atleta = row['atleta_id']
         data[id] = {"Fecha":fecha,"Año":año,"Mes":mes,"Día":dia,"Tipo":tipo,"Altura":altura,"Cadencia":cadencia,"Distancia":distancia,"Potencia":potencia,"Pulsaciones":pulsaciones,"Tiempo":tiempo,"Velocidad":velocidad,"Atleta":atleta}
@@ -165,7 +166,7 @@ def inicio(request):
 
     #inicio_actividades = actividades.objects.all().order_by("-año","-mes","-dia","atleta","tipo","altura","cadencia")
 
-    inicio_actividades = actividades.objects.all()
+    inicio_actividades = actividades.objects.all().order_by("-id")
     
     inicio_altura = actividades.objects.filter(**query).values('altura')
     df_inicio_altura = read_frame(inicio_altura)
