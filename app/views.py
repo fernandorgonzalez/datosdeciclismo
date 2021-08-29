@@ -164,9 +164,7 @@ def inicio(request):
     if (tipo !=''):
         query['tipo'] = tipo
 
-    #inicio_actividades = actividades.objects.all().order_by("-año","-mes","-dia","atleta","tipo","altura","cadencia")
-
-    inicio_actividades = actividades.objects.all().order_by("-id")
+    inicio_actividades = actividades.objects.all().order_by("id")
     
     inicio_altura = actividades.objects.filter(**query).values('altura')
     df_inicio_altura = read_frame(inicio_altura)
