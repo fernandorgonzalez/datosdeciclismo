@@ -96,7 +96,7 @@ def api_actividades(request):
         tiempo = row['tiempo']
         velocidad = row['velocidad']
         atleta = row['atleta_id']
-        data["Id":id] = {"Fecha":fecha,"Año":año,"Mes":mes,"Día":dia,"Tipo":tipo,"Altura":altura,"Cadencia":cadencia,"Distancia":distancia,"Potencia":potencia,"Pulsaciones":pulsaciones,"Tiempo":tiempo,"Velocidad":velocidad,"Atleta":atleta}
+        data[id] = {"Fecha":fecha,"Año":año,"Mes":mes,"Día":dia,"Tipo":tipo,"Altura":altura,"Cadencia":cadencia,"Distancia":distancia,"Potencia":potencia,"Pulsaciones":pulsaciones,"Tiempo":tiempo,"Velocidad":velocidad,"Atleta":atleta}
 
     return JsonResponse(data, safe=False)
 
@@ -117,7 +117,7 @@ def api_atletas(request):
         pais = row['country']
         peso = row['weight']
         sexo = row['sex']
-        data["Id":id]={"Nombre":nombre,"Apellido":apellido,"Ciudad":ciudad,"Provincia":provincia,"País":pais,"Peso":peso,"Sexo":sexo}
+        data[id]={"Nombre":nombre,"Apellido":apellido,"Ciudad":ciudad,"Provincia":provincia,"País":pais,"Peso":peso,"Sexo":sexo}
 
     return JsonResponse(data, safe=False)
 
