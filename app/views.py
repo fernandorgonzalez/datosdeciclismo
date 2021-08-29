@@ -106,7 +106,7 @@ def api_atletas(request):
 
     df_data = read_frame(data_api_atletas)
 
-    data = []
+    data = {}
 
     for index, row in df_data.iterrows():
         id = int(row['id'])
@@ -117,7 +117,7 @@ def api_atletas(request):
         pais = row['country']
         peso = row['weight']
         sexo = row['sex']
-        data.append({id:(nombre,apellido,ciudad,provincia,pais,peso,sexo,)})
+        data['id']=[nombre,apellido,ciudad,provincia,pais,peso,sexo]
 
     return JsonResponse(data, safe=False)
 
