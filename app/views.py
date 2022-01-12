@@ -118,7 +118,7 @@ def api_atletas(request):
         pais = row['country']
         peso = row['weight']
         sexo = row['sex']
-        data[id]={"Nombre":nombre,"Apellido":apellido,"Ciudad":ciudad,"Provincia":provincia,"País":pais,"Peso":peso,"Sexo":sexo}
+        data[id]={"Nombre":nombre,"Apellido":apellido,"Ciudad":ciudad,"Provincia":provincia,"Pais":pais,"Peso":peso,"Sexo":sexo}
 
     return JsonResponse(data, safe=False)
 
