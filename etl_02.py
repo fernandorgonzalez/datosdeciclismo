@@ -8,8 +8,8 @@ output_file_name = WDIR + 'actividades.csv'
 
 tipos = {'Ride','VirtualRide'}
 
-file_in = open(input_file_name)
-file_out = open(output_file_name, 'w')
+file_in = open(input_file_name, encoding="utf8")
+file_out = open(output_file_name, 'w', encoding="utf8")
 
 
 row = next(file_in)
