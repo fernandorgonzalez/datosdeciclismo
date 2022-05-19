@@ -16,7 +16,7 @@ row = next(file_in)
 row  = row.strip('\n')
 row = row.split(';')
 
-for r in range(0,61):
+for r in range(0,58):
     
     if row[r] == 'start_date_local':
         start_date_local = r
@@ -88,7 +88,7 @@ for line in file_in:
     except:
         velocidad = 0
     #atleta_id
-    atleta_id = line[60]
+    atleta_id = line[58]
     
     if tipo in tipos:
 
