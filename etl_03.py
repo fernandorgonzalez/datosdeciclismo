@@ -40,7 +40,7 @@ for line in file:
     tiempo = line[11]
     velocidad = line[12]
     atleta_id = line[13]
-    
+
     print(id_)
     
     query = "INSERT INTO APP_ACTIVIDADES(id, fecha, año, mes, dia, tipo, altura, cadencia, distancia, potencia, pulsaciones, tiempo, velocidad, atleta_id) VALUES  (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"

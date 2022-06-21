@@ -88,7 +88,7 @@ for line in file_in:
     except:
         velocidad = 0
     #atleta_id
-    atleta_id = line[58]
+    atleta_id = line[59]
     
     if tipo in tipos:
 
